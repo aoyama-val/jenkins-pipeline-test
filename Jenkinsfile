@@ -12,6 +12,7 @@ node {
             date
             uname -a
             id
+            exit 1
            '''
     } catch (err) {
         err_msg = "${err}"
@@ -36,6 +37,6 @@ def notification(msg) {
     if(currentBuild.result == "FAILURE") {
         slack_color = "danger"
     }
-    def slack_msg = "job ${env.JOB_NAME}[No.${env.BUILD_NUMBER}] ${currentBuild.result}. ${detail_link} \n\n ${msg}"
+    def slack_msg = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${currentBuild.result} after ${currentBuild.durationString} ${detail_link} \n\n ${msg}"
     slackSend channel: "${slack_channel}", color: "${slack_color}", message: "${slack_msg}", teamDomain: "${slack_domain}", token: "${slack_token}"
 }
