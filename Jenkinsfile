@@ -12,7 +12,7 @@ node {
             date
             uname -a
             id
-            exit 1
+            exit 0
            '''
     } catch (err) {
         err_msg = "${err}"
