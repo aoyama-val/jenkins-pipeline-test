@@ -3,5 +3,9 @@ node {
   sh 'echo Hello Pipeline.'
   
   stage '第二ステージ'
-  sh 'env'
+  sh '''
+    date
+    uname -a
+    id
+  '''
 }
